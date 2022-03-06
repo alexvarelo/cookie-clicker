@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+ import React, { useState } from 'react'
 
+/* PARA PODER ACCEDER A LOS HOOKS DEL TEST | NO ESTA EN USO*/
 function PlayersHooks() {
     const [Players, setPlayers] = useState([]);
     const [CurrentPlayer, setCurrentPlayer] = useState();

@@ -48,7 +48,7 @@ function App() {
           transformNum = {transformNum}
            />
       </div>
-      <Footer showGame={showGame} />
+      <Footer setShowGame={setShowGame} />
     </>
   ) : (
     <>

@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 /*
 Funcion que renderiza un boton con el cual se puede borrar todos los usuarios (vaciando el localStorage)
 */
-export default function (props) {
+export default function Footer(props) {
     return (
         <div className="footer">
             @Alejandro Varela 06/03/2022
@@ -13,7 +13,7 @@ export default function (props) {
                 onClick={() => {
                     if (window.confirm('Estás seguro que quiere borrar todos los usuarios? (Recargue la página para aplicar los cambios)'))
                         localStorage.clear();
-                    props.showGame(false);
+                    props.setShowGame(false);
                 }}>
                 Reset
             </Button>

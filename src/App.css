@@ -51,20 +51,32 @@ table.table-bordered {
   margin-right: 10px;
   text-align: center;
   align-items: center;
-  padding: 50px;
+  padding-bottom: 60px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   border: solid;
 }
 
 .Game__galleta {
-  margin-top: 40px;
+  margin-top: 20px;
   width: 100px;
   height: auto;
   align-items: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.Game__boost {
+  background-color: rgb(204, 165, 96);
+  padding:2px;
+  border-radius: 10px;
+}
+
+.Game__boost:active {
+  background-color: rgb(192, 155, 92);
+  border:solid 1px;
 }
 
 .Game__galleta:active {
@@ -81,8 +93,15 @@ table.table-bordered {
   font-size: 30px;
 }
 
+.Game__tutorial {
+  font-family: "Poppins", sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 20px;
+}
+
 .Game__cookies {
-  font-family: fantasy;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 70px;
   margin-top: 30px;
 }
@@ -104,16 +123,16 @@ table.table-bordered {
   25% {
     background-color: rgb(2, 87, 37);
     left: 20px;
-    top: 0px;
+    top: 20px;
   }
   50% {
     background-color: blue;
-    left: 20px;
-    top: 20px;
+    left: 0px;
+    top: 40px;
   }
   75% {
     background-color: rgb(0, 128, 117);
-    left: 0px;
+    left: -20px;
     top: 20px;
   }
   100% {

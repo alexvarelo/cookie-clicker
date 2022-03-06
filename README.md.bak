@@ -2,21 +2,6 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Information
-
-Mobile game Cookie Clicker with user management and local storage.
-
-## Difficulties
-
-Implementing the tests with renderHook, currently not working with current versions.
-For testing the Game and Home component it was necessary to retrieve dependent hooks declared in PlayersHooks.js.
-Explanation in Home.test.js
-
-## Dependencies
-
-npm install
-npm install react-bootstrap bootstrap@5.1.3
-
 ## Available Scripts
 
 In the project directory, you can run:

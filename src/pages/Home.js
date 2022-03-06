@@ -33,7 +33,9 @@ export default function Home(props) {
                 name: Player,
                 points: 0,
                 autoclickers: 0,
-                costAC: 50
+                costAC: 50,
+                powerClick: 1,
+                costPower:15
             }
             props.setPlayers(props.Players.concat(current_player));
             localStorage.setItem(current_player.name, JSON.stringify(current_player));
@@ -46,7 +48,7 @@ export default function Home(props) {
 
     return (
         <div className="Home">
-            <img className="Home__galleta" src={Galleta}></img>
+            <img alt="cookie" className="Home__galleta" src={Galleta} onClick={() => alert("Cree un usuario y empiece a jugar!")}></img>
             <h4 className="Home__text">Crea un jugador</h4>
             <br />
             <FormPlayer create_player={create_player} setPlayer={setPlayer} />
