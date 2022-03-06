@@ -1,80 +1,57 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
 import UserTable from './components/UserTable';
-import Game from './Game'
+import Galleta from '../assets/galleta.png'
+import FormPlayer from './components/FormPlayer';
 
-/* interface Player {
-    name: String;
-    points: number;
-    autoclickers:number;
-} */
 
-export default function Home() {
 
-    const [Players, setPlayers] = useState([]);
-    const [Player, setPlayer] = useState('');
-    const [CurrentPlayer, setCurrentPlayer] = useState();
-    const [showGame, setShowGame] = useState(false);
+export default function Home(props) {
 
-    //localStorage.clear();
-    //console.log(Object.keys(localStorage));
 
+    const [Player, setPlayer] = useState(''); //Hook que gestiona el input para crear nuevos jugadores
+
+    // Cada vez que se actualice showgame se actualiza la lista de jugadores en local, extrayendo los datos del localstorage
     useEffect(() => {
         var values = [];
-        var keys = Object.keys(localStorage);
-        console.log(keys);
-        var i = keys.length;
-        while (i--) {
-            values.push(JSON.parse(localStorage.getItem(keys[i])));
-        }
-        console.log(values);
-        setPlayers(values);
-    }, [showGame])
+        Object.keys(localStorage).map(key => values.push(JSON.parse(localStorage.getItem(key))));
+        props.setPlayers(values);
+    }, [props.showGame])
 
-
+    /*
+    Funcion que dado el nombre de un jugador, carga su partida buscando en el hook de Players, y si el usuario 
+    es nuevo crea una partida nueva con el nombre indicado. Si el campo es vacio alerta al jugador
+    */
     const create_player = e => {
         e.preventDefault();
-        let current_player = Players.find(player => player.name === Player);
+        if (Player === '') {
+            alert("Introduce un usuario");
+            return;
+        }
+        let current_player = props.Players.find(player => player.name === Player);
         if (current_player === undefined) {
             current_player = {
                 name: Player,
                 points: 0,
                 autoclickers: 0,
-                costAC: 10
+                costAC: 50
             }
-            setPlayers(Players.concat(current_player));
+            props.setPlayers(props.Players.concat(current_player));
+            localStorage.setItem(current_player.name, JSON.stringify(current_player));
         }
-        setCurrentPlayer(current_player);
-        localStorage.setItem(current_player.name, JSON.stringify(current_player));
+        props.setCurrentPlayer(current_player);
         setPlayer('');
-        setShowGame(true);
+        props.setShowGame(true);
     }
 
 
     return (
-        <div>
-            {!showGame &&
-                <div>
-                    <h2>Bienvenido a Cookie Clicker</h2>
-                    <h4>Crea un jugador</h4>
-                    <form onSubmit={create_player}>
-                        <input
-                            type="text"
-                            placeholder="Jugador *"
-                            value={Player}
-                            name="text"
-                            onChange={(e) => { setPlayer(e.target.value) }}>
-                        </input>
-                        <button>Comenzar</button>
-                    </form>
-                    <br></br>
-                    <div>
-                        <UserTable CurrentPlayers={Players} />
-                    </div>
-                </div>
-            }
-            <div>
-                {showGame && <Game CurrentPlayer={CurrentPlayer} showGame={setShowGame} Players={Players} updatePlayers={setPlayers}></Game>}
+        <div className="Home">
+            <img className="Home__galleta" src={Galleta}></img>
+            <h4 className="Home__text">Crea un jugador</h4>
+            <br />
+            <FormPlayer create_player={create_player} setPlayer={setPlayer} />
+            <div style={{ marginTop: "30px" }}>
+                <UserTable CurrentPlayers={props.Players} transformNum = {props.transformNum} />
             </div>
         </div>
     )
